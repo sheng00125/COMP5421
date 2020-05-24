@@ -96,7 +96,8 @@ int Menu::read_option_number() {
   int choice;
 
   std::cin >> choice;
-
+  std::cin.clear(); // clear buffer
+  std::cin.ignore(INT_MAX,'\n'); // do not consider '\n' as input.
   
   if (std::cin.fail())
     choice = -1;
