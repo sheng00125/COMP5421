@@ -88,3 +88,6 @@ flycheck_*.el
 
 
 # End of https://www.gitignore.io/api/c++,emacs
+
+# my stuffs
+*.ps1
