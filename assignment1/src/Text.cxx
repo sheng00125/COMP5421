@@ -2,31 +2,33 @@
 #include "Text.h"
 
 Text::Text() {
-
-}
-
-Text::Text(const Text& txt) {
   
-  strcpy_s(pStore, 128, txt.pStore);
+  pStore = new char[MAX_SIZE]{'\0'};
   
 }
 
-Text::Text(const char* pCstr) {
+Text::Text(const Text& txt): Text() {
 
-  strcpy_s(pStore, 128, pCstr);
+  strcpy_s(pStore, MAX_SIZE, txt.pStore);
+  
+}
+
+Text::Text(const char* pCstr) : Text() {
+
+  strcpy_s(pStore, MAX_SIZE, pCstr);
   
 }
 
 void Text::assign(const char* pCstr) {
 
 
-  strcpy_s(pStore, 128, pCstr);
+  strcpy_s(pStore, MAX_SIZE, pCstr);
     
 }
-
+ 
 Text Text::operator = (const Text & txt) {
 
-  strcpy_s(pStore,128, txt.pStore);
+  strcpy_s(pStore, MAX_SIZE, txt.pStore);
 
   return *this;
 }
@@ -69,7 +71,7 @@ bool Text::isEmpty() const {
 
 Text::~Text() {
   
-  delete pStore;
+  delete[] pStore;
   
 }
 

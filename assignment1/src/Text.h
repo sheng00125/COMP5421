@@ -1,8 +1,12 @@
+#ifndef TEXT_H
+#define TEXT_H
 #include <iostream>
+const int MAX_SIZE = 1024;
 
 class Text
+
 {
-  char *pStore = new char[128]{'\0'};
+  char *pStore;
   
  public:
 
@@ -32,3 +36,5 @@ class Text
 };
 
 std::ostream& operator<<(std::ostream & sout, const Text& txt);
+
+#endif

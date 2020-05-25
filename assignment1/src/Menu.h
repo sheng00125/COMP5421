@@ -1,5 +1,9 @@
+#ifndef MENU_H
+#define MENU_H
+
 #include "Text.h"
 #include <iostream>
+#include <string>
 
 class Menu
 {
@@ -60,3 +64,5 @@ public:
 };
 
 std::ostream& operator<<(std::ostream &, const Menu&);
+
+#endif
