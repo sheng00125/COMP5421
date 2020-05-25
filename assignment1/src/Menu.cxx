@@ -132,6 +132,8 @@ Text Menu::toString() const {
 
   Text promptmsg;
 
+
+  
   if (!this->top_message.isEmpty())
     promptmsg.append(this->top_message); promptmsg.append("\n");
 
@@ -139,13 +141,14 @@ Text Menu::toString() const {
   for (int i = 0; i < count; ++i) {
     promptmsg.append(option_list[i]);
   }
-  
+
+
+    
   if (!this->bottom_message.isEmpty())
     promptmsg.append(this->bottom_message); promptmsg.append("\n");
 
   promptmsg.append("??");
-
-  
+    
   return promptmsg;
 
 }
@@ -193,6 +196,6 @@ bool Menu::isEmpty() const {
 
 std::ostream& operator<<(std::ostream & sout, const Menu& m)
 {
-    sout << m.toString(); 
+  sout << m.toString(); 
   return sout;
 }
