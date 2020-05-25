@@ -27,11 +27,11 @@ public:
 
   void insert(int index, Text& option);
 
-  void insert(int index, const char* option) const;
+  void insert(int index, const char* option);
 
   void push_back(const char* pOption);
 
-  void push_back(const Text* option);
+  void push_back(const Text& option);
 
   void remove(int index);
 
