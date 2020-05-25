@@ -5,17 +5,23 @@ Menu::Menu()
 {
   this->top_message = "";
   this->bottom_message = "";
-  this->option_list = new Text();
+  this->capacity = 1;
   this->count = 0;
+  this->option_list = new Text[1];
 }
 
 
 Menu::Menu( const Menu& mnu ){
 
+	this->option_list = mnu.option_list;
+	this->capacity = mnu.capacity;
+	this->count = mnu.count;
+	this->top_message = mnu.top_message;
+	this->bottom_message = mnu.bottom_message;
 }
 
 Menu::~Menu() {
-
+	delete[] this->option_list;
 }
 
 Menu &Menu::operator=(const Menu & m) {
@@ -29,23 +35,73 @@ Menu &Menu::operator=(const Menu & m) {
   return *this;
 }
 
-void Menu::insert(int index, Text& option) {
-
+void Menu::double_capacity()
+{
+	this->capacity *= 2;
+	Text* tmp = new Text[this->capacity];
+	for (int i = 0; i < this->count; i++)
+	{
+		tmp[i] = this->option_list[i];
+	}
+	this->option_list = tmp;
 }
 
-void Menu::insert(int index, const char* option) const {
+void Menu::insert(int index, Text& option) {
+	if (index > this->count)
+		return;
 
+	if (this->count == this->capacity)
+		this->double_capacity();
+
+	for (int i = this->count-1, j = this->count; j > index; i--, j--)
+	{
+		this->option_list[j] = this->option_list[i];
+	}
+	this->option_list[index] = option;
+	this->count++;
+}
+
+void Menu::insert(int index, const char* option){
+	if (index > this->count)
+		return;
+
+	if (this->count == this->capacity)
+		this->double_capacity();
+
+	for (int i = this->count - 1, j = this->count; j > index; i--, j--)
+	{
+		this->option_list[j] = this->option_list[i];
+	}
+	this->option_list[index] = Text(option);
+	this->count++;
 }
 
 void Menu::push_back(const char* pOption) {
+	if (this->count == this->capacity)
+		this->double_capacity();
 
+	this->option_list[this->count] = Text(pOption);
+	this->count++;
 }
 
-void Menu::push_back(const Text* option) {
+void Menu::push_back(const Text& option) {
+	if (this->count == this->capacity)
+		this->double_capacity();
 
+	this->option_list[this->count] = option;
+	this->count++;
 }					  
 
 void Menu::remove(int index) {
+	if (index > this->count - 1)
+		return;
+
+	//shift the array elements to the left
+	for (int i = index, j = index+1; j < this->count; i++, j++)
+	{
+		this->option_list[i] = this->option_list[j];
+	}
+	this->count--;
 
 }
 
@@ -60,7 +116,9 @@ int Menu::getCapacity() const {
 }
 
 void Menu::pop_back() {
-
+	if (this->count == 0)
+		return;
+	this->count--;
 }
 
 Text Menu::get(int k) {
@@ -96,11 +154,12 @@ int Menu::read_option_number() {
   int choice;
 
   std::cin >> choice;
-  std::cin.clear(); // clear buffer
-  std::cin.ignore(INT_MAX,'\n'); // do not consider '\n' as input.
   
   if (std::cin.fail())
     choice = -1;
+
+  std::cin.clear(); // clear buffer
+  std::cin.ignore(INT_MAX, '\n'); // do not consider '\n' as input.
  
   return choice;
   
