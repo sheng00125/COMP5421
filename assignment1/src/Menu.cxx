@@ -11,7 +11,11 @@ Menu::Menu()
 
 
 Menu::Menu( const Menu& mnu ){
-
+  
+  std::cout << "inside the assignment constructor, this is " << this << '\n';
+    
+  *this = mnu;
+    
 }
 
 Menu::~Menu() {
@@ -19,6 +23,8 @@ Menu::~Menu() {
 }
 
 Menu &Menu::operator=(const Menu & m) {
+
+  std::cout << "inside the assignment operator, this is " << this << " and m is " << &m << "\n" ;
   
   this->option_list = m.option_list;
   this->capacity = m.capacity;
@@ -72,19 +78,18 @@ Text Menu::toString() const {
 
   Text promptmsg;
 
-  promptmsg.append(this->top_message);
+  if (!this->top_message.isEmpty())
+    promptmsg.append(this->top_message); promptmsg.append("\n");
 
 
   for (int i = 0; i < count; ++i) {
     promptmsg.append(option_list[i]);
   }
-
-  promptmsg.append(this->bottom_message);
   
-  if (this->count == 0)
-    {
-      promptmsg.append("??");
-    }
+  if (!this->bottom_message.isEmpty())
+    promptmsg.append(this->bottom_message); promptmsg.append("\n");
+
+  promptmsg.append("??");
 
   
   return promptmsg;
@@ -108,18 +113,22 @@ int Menu::read_option_number() {
 
 void Menu::set_top_message(const Text& m) {
 
+  this->top_message = m;
 }
 
 void Menu::set_bottom_message(const Text& m) {
 
+  this->bottom_message = m;
 }
 
 void Menu::clear_top_message() {
 
+  this->top_message = "";
 }
 
 void Menu::clear_bottom_message() {
 
+  this->bottom_message = "";
 }
   
 bool Menu::isEmpty() const {

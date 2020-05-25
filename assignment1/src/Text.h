@@ -5,7 +5,7 @@ class Text
   char *pStore = new char[128]{'\0'};
   
  public:
-  char irrelevant = 'A';
+
   Text();
 
   Text(const Text& txt);
