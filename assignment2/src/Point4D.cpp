@@ -154,43 +154,74 @@ Point4D operator/(const Point4D &x, const Point4D &y) {
 
 
 Point4D operator+(const Point4D &x, const double &y) {
-  
+  Point4D tmp = Point4D(x);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] += y;
+  }
+  return tmp;
 }
 
 Point4D operator-(const Point4D &x, const double &y) {
-
+  Point4D tmp = Point4D(x);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] -= y;
+  }
+  return tmp;
 }
 
 Point4D operator*(const Point4D &x, const double &y) {
-
+  Point4D tmp = Point4D(x);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] *= y;
+  }
+  return tmp;
 }
 
 Point4D operator/(const Point4D &x, const double &y) {
-
+  Point4D tmp = Point4D(x);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] /= y;
+  }
+  return tmp;
 }
 
-
 int operator+(double x, const Point4D &y) {
-
+  Point4D tmp = Point4D(y);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] += x;
+  }
+  return tmp;
 }
 
 int operator-(double x, const Point4D &y) {
-
+  Point4D tmp = Point4D(y);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] -= x;
+  }
+  return tmp;
 }
 
 int operator*(double x, const Point4D &y) {
-
+  Point4D tmp = Point4D(y);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] *= x;
+  }
+  return tmp;
 }
 
 int operator/(double x, const Point4D &y) {
-
+  Point4D tmp = Point4D(y);
+  for (int i = 0; i < FOUR; i++) {
+    tmp[i] /= x;
+  }
+  return tmp;
 }
 
 
 //// 8. Relational operators. All can be impplemented as members. None modifies its operands. For consistency, all are implemented as free functions.
 
 bool operator==(const Point4D &x, const Point4D &y) {
-
+  
 }
 
 bool operator!=(const Point4D &x, const Point4D &y) {
