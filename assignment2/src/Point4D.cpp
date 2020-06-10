@@ -19,35 +19,43 @@ Point4D Point4D::invert() const {
 // Operator overloads
 //// 6. Compound assignment
 Point4D& Point4D::operator+=(const Point4D x) {
-
+  *this = *this + x;
+  return *this;
 }
 
 Point4D& Point4D::operator-=(const Point4D x) {
-
+  *this = *this - x;
+  return *this;
 }
 
 Point4D& Point4D::operator*=(const Point4D x) {
-
+  *this = *this * x;
+  return *this;
 }
 
 Point4D& Point4D::operator/=(const Point4D x) {
-
+  *this = *this / x;
+  return *this;
 }
 
 Point4D& Point4D::operator+=(const double x) {
-
+  *this = *this + x;
+  return *this;
 }
 
 Point4D& Point4D::operator-=(const double x) {
-
+  *this = *this - x;
+  return *this;
 }
 
 Point4D& Point4D::operator*=(const double x) {
-
+  *this = *this + x;
+  return *this;
 }
 
 Point4D& Point4D::operator/=(const double x) {
-
+  *this = *this / x;
+  return *this;
 }
 
 //// 9. Unary operators. All are commonly implemented as members.
@@ -185,7 +193,7 @@ Point4D operator/(const Point4D &x, const double &y) {
   return tmp;
 }
 
-int operator+(double x, const Point4D &y) {
+Point4D operator+(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] += x;
@@ -193,7 +201,7 @@ int operator+(double x, const Point4D &y) {
   return tmp;
 }
 
-int operator-(double x, const Point4D &y) {
+Point4D operator-(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] -= x;
@@ -201,7 +209,7 @@ int operator-(double x, const Point4D &y) {
   return tmp;
 }
 
-int operator*(double x, const Point4D &y) {
+Point4D operator*(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] *= x;
@@ -209,7 +217,7 @@ int operator*(double x, const Point4D &y) {
   return tmp;
 }
 
-int operator/(double x, const Point4D &y) {
+Point4D operator/(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] /= x;
