@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <cassert>
-#include "Point4D.h"
+#include "Point4D.hpp"
 using std::cout;
 using std::cin;
 using std::endl;

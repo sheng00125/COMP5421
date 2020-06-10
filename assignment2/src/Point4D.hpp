@@ -46,8 +46,8 @@ public:
   Point4D operator-();
   Point4D& operator++(); // prefix
   Point4D& operator--(); // prefix
-  Point4D& operator++(int); // postfix
-  Point4D& operator--(int); // postfix
+  Point4D operator++(int); // postfix
+  Point4D operator--(int); // postfix
 
   //// 10. Subscript operator[] (both const and non-const). Use 1-based indexing to preserve the mathematical notation above, regardless of the underlying representation. Must throw std::out_of_range("index out of bounds") if the supplied subscript is invalid.
   double& operator[](int);
