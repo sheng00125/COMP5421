@@ -185,7 +185,7 @@ Point4D operator/(const Point4D &x, const double &y) {
   return tmp;
 }
 
-int operator+(double x, const Point4D &y) {
+Point4D operator+(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] += x;
@@ -193,7 +193,7 @@ int operator+(double x, const Point4D &y) {
   return tmp;
 }
 
-int operator-(double x, const Point4D &y) {
+Point4D operator-(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] -= x;
@@ -201,7 +201,7 @@ int operator-(double x, const Point4D &y) {
   return tmp;
 }
 
-int operator*(double x, const Point4D &y) {
+Point4D operator*(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] *= x;
@@ -209,7 +209,7 @@ int operator*(double x, const Point4D &y) {
   return tmp;
 }
 
-int operator/(double x, const Point4D &y) {
+Point4D operator/(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
   for (int i = 0; i < FOUR; i++) {
     tmp[i] /= x;
@@ -221,26 +221,26 @@ int operator/(double x, const Point4D &y) {
 //// 8. Relational operators. All can be impplemented as members. None modifies its operands. For consistency, all are implemented as free functions.
 
 bool operator==(const Point4D &x, const Point4D &y) {
-  
+  return (x - y).absoluteValue() <= Point4D::getTolerance();
 }
 
 bool operator!=(const Point4D &x, const Point4D &y) {
-
+  return (x - y).absoluteValue() > Point4D::getTolerance();
 }
 
 bool operator<(const Point4D &x, const Point4D &y) {
-
+  return x != y && x.absoluteValue() < y.absoluteValue;
 }
 
 bool operator<=(const Point4D &x, const Point4D &y) {
-
+  return x < y || x == y;
 }
 
 bool operator>(const Point4D &x, const Point4D &y) {
-
+  return x != y && x.absoluteValue() > y.absoluteValue;
 }
 
 bool operator>=(const Point4D &x, const Point4D &y) {
-
+  return x > y || x == y;
 }
 
