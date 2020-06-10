@@ -42,8 +42,8 @@ public:
   Point4D& operator/=(const double x);
 
   //// 9. Unary operators. All are commonly implemented as members.
-  Point4D& operator+(const double x);
-  Point4D& operator-(const double x);
+  Point4D& operator+();
+  Point4D& operator-();
   Point4D& operator++(); // prefix
   Point4D& operator--(); // prefix
   Point4D& operator++(int); // postfix

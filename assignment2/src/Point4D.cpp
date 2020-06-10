@@ -59,16 +59,32 @@ Point4D& Point4D::operator/=(const double x) {
 }
 
 //// 9. Unary operators. All are commonly implemented as members.
-Point4D& Point4D::operator+(const double x) {
+Point4D& Point4D::operator+() {
+  Point4D tmp;
 
+  for (int i = 0; i < FOUR; ++i) {
+    tmp[i] = +this->point[i];
+  }
+
+  return tmp;
 }
 
-Point4D& Point4D::operator-(const double x) {
+Point4D& Point4D::operator-() {
+  Point4D tmp;
 
+  for (int i = 0; i < FOUR; ++i) {
+    tmp[i] = -this->point[i];
+  }
+
+  return tmp;
 }
 
 Point4D& Point4D::operator++() { // prefix
 
+  for (int i = 0; i < FOUR; ++i) {
+    ++this->point[i];
+  }
+  return *this;
 }
 
 Point4D& Point4D::operator--() {  // prefix
@@ -224,7 +240,6 @@ Point4D operator/(double x, const Point4D &y) {
   }
   return tmp;
 }
-
 
 //// 8. Relational operators. All can be impplemented as members. None modifies its operands. For consistency, all are implemented as free functions.
 
