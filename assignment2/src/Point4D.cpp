@@ -99,7 +99,14 @@ std::istream& operator>>(std::istream& input, Point4D point4d) {
   
 //// 14. An absoluteValue() member function to return the absolute value of the invoking object.
 double Point4D::absoluteValue() {
-
+	double sum = 0;
+	for (int i = 0; i < DIMENSION; i++) {
+		if (point[i] < 0)
+			sum += -point[i];
+		else
+			sum += point[i];
+	}
+	return sum
 }
 
 //// 7. Basic arithmetic operators. Not all can be implemented as members. None modifies its operands. For consistency, all are commonly implemented as free (non-member) functions.

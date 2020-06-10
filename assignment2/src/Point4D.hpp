@@ -5,6 +5,9 @@
 class Point4D
 {
 private:
+ 
+  int DIMENSION = 4;
+
   static double tolerance;
   std::array<double, 4> point;
   
