@@ -66,10 +66,6 @@ public:
   double absValue() const;
 };
 
-double Point4D::tolerance = 1.0E-6;
-void Point4D::setTolerance(double tol) { tolerance = std::abs(tol); }
-double Point4D::getTolerance() { return tolerance; }
-
 //// 7. Basic arithmetic operators. Not all can be implemented as members. None modifies its operands. For consistency, all are commonly implemented as free (non-member) functions.
 
 Point4D operator+(const Point4D &x, const Point4D &y);

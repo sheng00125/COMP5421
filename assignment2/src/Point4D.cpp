@@ -5,6 +5,11 @@ Point4D::Point4D(double x1, double x2, double x3, double x4) {
   point = {x1, x2, x3, x4};
 }
 
+double Point4D::tolerance  = 1.0E-6;
+
+void Point4D::setTolerance(double tol) { tolerance = std::abs(tol); }
+double Point4D::getTolerance(){ return tolerance; }
+
 Point4D Point4D::inverse() const {
   double b = (point[0]*point[2])-(point[1]*point[3]);
   Point4D tmp = Point4D(point[2], -point[1], point[0], -point[3]);
