@@ -63,7 +63,7 @@ public:
   friend std::istream& operator>>(std::istream&, Point4D point4d);
   
   //// 14. An absoluteValue() member function to return the absolute value of the invoking object.
-  double absoluteValue();
+  double absoluteValue() const;
 };
 
 double Point4D::tolerance = 1.0E-6;
@@ -82,10 +82,10 @@ Point4D operator-(const Point4D &x, const double &y);
 Point4D operator*(const Point4D &x, const double &y);
 Point4D operator/(const Point4D &x, const double &y);
 
-int operator+(double x, const Point4D &y);
-int operator-(double x, const Point4D &y);
-int operator*(double x, const Point4D &y);
-int operator/(double x, const Point4D &y);
+Point4D operator+(double x, const Point4D &y);
+Point4D operator-(double x, const Point4D &y);
+Point4D operator*(double x, const Point4D &y);
+Point4D operator/(double x, const Point4D &y);
 
 //// 8. Relational operators. All can be impplemented as members. None modifies its operands. For consistency, all are implemented as free functions.
 
