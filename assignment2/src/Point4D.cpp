@@ -5,7 +5,7 @@ Point4D::Point4D(double x1, double x2, double x3, double x4) {
   point = {x1, x2, x3, x4};
 }
 
-Point4D Point4D::invert() const {
+Point4D Point4D::inverse() const {
   double b = (point[0]*point[2])-(point[1]*point[3]);
   Point4D tmp = Point4D(point[2], -point[1], point[0], -point[3]);
   if(b == 0)
@@ -135,7 +135,7 @@ double Point4D::operator[](int i) const {
 
 //// 11. Function call operator() overload that takes no arguments and returns a double a pproximating the absolute value of the invoking object.
 double Point4D::operator()() const {
-  return absoluteValue();
+  return absValue();
 }
 
 //// 12. Overloaded extraction (input) operator >> for reading Point4D objects
@@ -151,7 +151,7 @@ std::istream& operator>>(std::istream& input, Point4D point4d) {
 }
   
 //// 14. An absoluteValue() member function to return the absolute value of the invoking object.
-double Point4D::absoluteValue() const {
+double Point4D::absValue() const {
 	double sum = 0;
 	for (int i = 0; i < FOUR; i++) {
 		if (point[i] < 0)
@@ -190,7 +190,7 @@ Point4D operator*(const Point4D &x, const Point4D &y) {
 
 Point4D operator/(const Point4D &x, const Point4D &y) {
   Point4D tmp = Point4D();
-  tmp = x * y.invert();
+  tmp = x * y.inverse();
   return tmp;
 }
 

@@ -25,7 +25,7 @@ public:
   // Defaulted assignment operator
   Point4D& operator=(const Point4D&) = default;
   
-  Point4D invert() const;
+  Point4D inverse() const;
   // Destructor
   virtual ~Point4D() = default;
 
@@ -63,7 +63,7 @@ public:
   friend std::istream& operator>>(std::istream&, Point4D point4d);
   
   //// 14. An absoluteValue() member function to return the absolute value of the invoking object.
-  double absoluteValue() const;
+  double absValue() const;
 };
 
 double Point4D::tolerance = 1.0E-6;
