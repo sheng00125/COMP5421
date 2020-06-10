@@ -140,6 +140,12 @@ double Point4D::operator()() const {
 
 //// 12. Overloaded extraction (input) operator >> for reading Point4D objects
 std::ostream& operator<<(std::ostream& output, const Point4D point4d) {
+  for (int i = 0; i < FOUR; i++) {
+    if (i < FOUR - 1)
+      output << point4d.point[i] << ", ";
+    else
+      output << point4d.point[i] << "\n";;
+  }
 
   return output;
 }
@@ -285,3 +291,6 @@ bool operator>=(const Point4D &x, const Point4D &y) {
   return x > y || x == y;
 }
 
+double Point4D::tolerance = 1.0E-6;
+void Point4D::setTolerance(double tol) { tolerance = std::abs(tol); }
+double Point4D::getTolerance() { return tolerance; }
