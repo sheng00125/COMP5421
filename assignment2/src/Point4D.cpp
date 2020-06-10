@@ -111,7 +111,7 @@ Point4D Point4D::operator--(int) {  // postfix
   Point4D copy = *this;
   
   for (int i = 0; i < FOUR; ++i) {
-    ++this->point[i];
+    --this->point[i];
   }
   return copy;
 
