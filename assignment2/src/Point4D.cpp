@@ -5,6 +5,17 @@ Point4D::Point4D(double x1, double x2, double x3, double x4) {
   point = {x1, x2, x3, x4};
 }
 
+Point4D Point4D::invert() const {
+  double b = (point[0]*point[2])-(point[1]*point[3]);
+  Point4D tmp = Point4D(point[2], -point[1], point[0], -point[3]);
+  if(b == 0)
+  {
+    throw "Matrix is not invertable"; 
+  }
+  tmp *= b;
+  return tmp;
+}
+
 // Operator overloads
 //// 6. Compound assignment
 Point4D& Point4D::operator+=(const Point4D x) {
@@ -68,14 +79,14 @@ Point4D& Point4D::operator--(int) {  // postfix
 //// 10. Subscript operator[] (both const and non-const). Use 1-based indexing to preserve the mathematical notation above, regardless of the underlying representation. Must throw std::out_of_range("index out of bounds") if the supplied subscript is invalid.
 double& Point4D::operator[](int i) {
   if (i < 0 || i > 3) {
-    throw std::out_of_range("Noob~!");
+    throw std::out_of_range("double& Point4D::operator[] : index out of range.");
   }
   return point[i];
 }
 
 double Point4D::operator[](int i) const {
   if (i < 0 || i > 3) {
-    throw std::out_of_range("NOOB!");
+    throw std::out_of_range("double Point4D::operator[] : index out of range");
   }
   return point[i];
 }
@@ -100,36 +111,50 @@ std::istream& operator>>(std::istream& input, Point4D point4d) {
 //// 14. An absoluteValue() member function to return the absolute value of the invoking object.
 double Point4D::absoluteValue() {
 	double sum = 0;
-	for (int i = 0; i < DIMENSION; i++) {
+	for (int i = 0; i < FOUR; i++) {
 		if (point[i] < 0)
 			sum += -point[i];
 		else
 			sum += point[i];
 	}
-	return sum
+	return sum;
 }
 
 //// 7. Basic arithmetic operators. Not all can be implemented as members. None modifies its operands. For consistency, all are commonly implemented as free (non-member) functions.
 Point4D operator+(const Point4D &x, const Point4D &y) {
   Point4D tmp = Point4D();
-  
+  for (int i = 0; i < FOUR; i++) {
+	  tmp[i] = x[i] + y[i];
+  }
+  return tmp;
 }
 
 Point4D operator-(const Point4D &x, const Point4D &y) {
-
+  Point4D tmp = Point4D();
+  for (int i = 0; i < FOUR; i++) {
+	  tmp[i] = x[i] - y[i];
+  }
+  return tmp;
 }
 
 Point4D operator*(const Point4D &x, const Point4D &y) {
-
+  Point4D tmp = Point4D();
+  tmp[0] = x[0]*y[0]+x[1]*y[3];
+  tmp[1] = x[0]*y[1]+x[1]*y[2];
+  tmp[2] = x[3]*y[1]+x[2]*y[2];
+  tmp[3] = x[3]*y[0]+x[2]*y[3];
+  return tmp;
 }
 
 Point4D operator/(const Point4D &x, const Point4D &y) {
-
+  Point4D tmp = Point4D();
+  tmp = x * y.invert();
+  return tmp;
 }
 
 
 Point4D operator+(const Point4D &x, const double &y) {
-
+  
 }
 
 Point4D operator-(const Point4D &x, const double &y) {

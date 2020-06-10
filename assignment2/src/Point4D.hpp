@@ -2,18 +2,16 @@
 #include <stdexcept>
 #include <array>
 
+#define FOUR 4
+
 class Point4D
 {
 private:
- 
-  int DIMENSION = 4;
-
   static double tolerance;
   std::array<double, 4> point;
   
+  
 public:
-  static void setTolerance(double tol);
-  static double getTolerance();
   
   // A constructor taking four parameters of type double, specifying a default value of zero for each argument passed to the constructor.
   explicit Point4D(double x1 = 0, double x2 = 0, double x3 = 0, double x4 = 0);
@@ -21,9 +19,13 @@ public:
   // Copy constructor
   Point4D(const Point4D &other) = default;
 
+  static void setTolerance(double tol);
+  static double getTolerance();
+
   // Defaulted assignment operator
   Point4D& operator=(const Point4D&) = default;
   
+  Point4D invert() const;
   // Destructor
   virtual ~Point4D() = default;
 
