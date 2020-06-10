@@ -6,7 +6,6 @@ Point4D::Point4D(double x1, double x2, double x3, double x4) {
 }
 
 double Point4D::tolerance  = 1.0E-6;
-
 void Point4D::setTolerance(double tol) { tolerance = std::abs(tol); }
 double Point4D::getTolerance(){ return tolerance; }
 
@@ -295,7 +294,3 @@ bool operator>(const Point4D &x, const Point4D &y) {
 bool operator>=(const Point4D &x, const Point4D &y) {
   return x > y || x == y;
 }
-
-double Point4D::tolerance = 1.0E-6;
-void Point4D::setTolerance(double tol) { tolerance = std::abs(tol); }
-double Point4D::getTolerance() { return tolerance; }
