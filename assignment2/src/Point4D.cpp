@@ -59,7 +59,7 @@ Point4D& Point4D::operator/=(const double x) {
 }
 
 //// 9. Unary operators. All are commonly implemented as members.
-Point4D& Point4D::operator+() {
+Point4D Point4D::operator+() {
   Point4D tmp;
 
   for (int i = 0; i < FOUR; ++i) {
@@ -69,7 +69,7 @@ Point4D& Point4D::operator+() {
   return tmp;
 }
 
-Point4D& Point4D::operator-() {
+Point4D Point4D::operator-() {
   Point4D tmp;
 
   for (int i = 0; i < FOUR; ++i) {
