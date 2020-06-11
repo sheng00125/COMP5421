@@ -16,7 +16,7 @@ Point4D Point4D::inverse() const {
   {
     throw "Matrix is not invertable"; 
   }
-  tmp *= b;
+  tmp *= 1/b;
   return tmp;
 }
 
@@ -53,7 +53,7 @@ Point4D& Point4D::operator-=(const double x) {
 }
 
 Point4D& Point4D::operator*=(const double x) {
-  *this = *this + x;
+  *this = *this * x;
   return *this;
 }
 
