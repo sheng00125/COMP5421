@@ -145,10 +145,10 @@ double Point4D::operator()() const {
 //// 12. Overloaded extraction (input) operator >> for reading Point4D objects
 std::ostream& operator<<(std::ostream& output, const Point4D point4d) {
   for (int i = 0; i < FOUR; i++) {
+    output << point4d.point[i];
+
     if (i < FOUR - 1)
-      output << point4d.point[i] << ", ";
-    else
-      output << point4d.point[i] << "\n";;
+      output << ", ";
   }
 
   return output;
