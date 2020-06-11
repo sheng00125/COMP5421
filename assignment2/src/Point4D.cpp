@@ -263,9 +263,7 @@ Point4D operator*(double x, const Point4D &y) {
 
 Point4D operator/(double x, const Point4D &y) {
   Point4D tmp = Point4D(y);
-  for (int i = 0; i < FOUR; i++) {
-    tmp[i] /= x;
-  }
+  tmp = x * y.inverse();
   return tmp;
 }
 
