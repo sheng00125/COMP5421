@@ -60,7 +60,7 @@ public:
   friend std::ostream& operator<<(std::ostream&, const Point4D point4d);
 
   //// 13. Overloaded insertion (output) operaetor << for writing Point4D objects
-  friend std::istream& operator>>(std::istream&, Point4D point4d);
+  friend std::istream& operator>>(std::istream&, Point4D& point4d);
   
   //// 14. An absoluteValue() member function to return the absolute value of the invoking object.
   double absValue() const;
