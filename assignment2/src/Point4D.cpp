@@ -10,7 +10,7 @@ void Point4D::setTolerance(double tol) { tolerance = std::abs(tol); }
 double Point4D::getTolerance(){ return tolerance; }
 
 Point4D Point4D::inverse() const {
-  // std::cout << this[0];
+
   double b = (*this)[1]*(*this)[3] - (*this)[2]*(*this)[4];
   Point4D tmp = Point4D((*this)[3], -(*this)[2], (*this)[1], -(*this)[4]);
   if(b == 0)
@@ -125,14 +125,14 @@ Point4D Point4D::operator--(int) {  // postfix
 
 //// 10. Subscript operator[] (both const and non-const). Use 1-based indexing to preserve the mathematical notation above, regardless of the underlying representation. Must throw std::out_of_range("index out of bounds") if the supplied subscript is invalid.
 double& Point4D::operator[](int i) {
-  if (i < 1 || i > 4) {
+  if (i < 1 || i > FOUR) {
     throw std::out_of_range("double& Point4D::operator[] : index out of range.");
   }
   return point[i-1];
 }
 
 double Point4D::operator[](int i) const {
-  if (i < 1 || i > 4) {
+  if (i < 1 || i > FOUR) {
     throw std::out_of_range("double Point4D::operator[] : index out of range");
   }
   return point[i-1];
