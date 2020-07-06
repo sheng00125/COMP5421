@@ -1,4 +1,8 @@
+#ifndef MENU_H
+#define MENU_H
+
 #include <vector>
+#include <string>
 
 class Menu
 {
@@ -33,6 +37,6 @@ public:
 
   bool isEmpty() const;
   
-  
-  remove
 };
+
+#endif /* MENU_H */
