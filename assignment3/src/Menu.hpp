@@ -7,15 +7,15 @@
 class Menu
 {
   std::vector<std::string> option_list;
-  std::string top_msg;
-  std::string bottom_msg;
+  std::string top_message;
+  std::string bottom_message;
 
 public:
   Menu();
 
   void insert( int index, std::string& option );
 
-  void push_back(std::string option);
+  void push_back(std::string& option);
 
   void remove(int index);
 

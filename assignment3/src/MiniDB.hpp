@@ -16,6 +16,9 @@ public:
   MiniDB& operator=(const MiniDB&) = default;
 
   std::size_t size() const {
+
+    return db_store.size();
+    
   }
   
   void insert(const T& item) {
@@ -64,13 +67,16 @@ public:
   
   std::size_t getCurrentIndex() const {
 
-    std::size_t idx = std::distance(db_store.begin(), current_postion);
+    std::size_t idx = std::distance<std::list<T>::const_iterator>(db_store.begin(), current_position);
 
     return idx;
+    
   }
   
   void moveToIndex(std::size_t index) {
 
+    current_position = std::next(db_store.begin(), index);
+    
   }
 
   const T& getValue() const {

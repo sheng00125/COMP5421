@@ -7,12 +7,12 @@
 
 class LineManager
 {
-   MiniDB<std::string> db;
-   Menu FullMenu;
-   Menu PartialMenu;
+   MiniDB<std::string> db_store;
+   Menu full_menu;
+   Menu partial_menu;
 
-   std::size_t upper_span;
-   std::size_t lower_span;
+   std::size_t upper_span = 2;
+   std::size_t lower_span = 2;
   
 public:
   LineManager();
