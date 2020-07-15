@@ -22,7 +22,7 @@ public:
   }
   
   void insert(const T& item) {
-    current_position = db_store.insert(current_position, item);
+    current_position = db_store.insert(++current_position, item);
   }
   
   void append(const T& item) {

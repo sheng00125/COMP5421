@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 class Menu
 {
@@ -10,6 +11,8 @@ class Menu
   std::string top_message;
   std::string bottom_message;
 
+  void perform_action(int option);
+  
 public:
   Menu();
 

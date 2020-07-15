@@ -63,7 +63,23 @@ std::string Menu::toString() const
 
 int Menu::read_option_number()
 {
-  return 0;
+  std::string bad_data;
+  int option_number;
+  
+  std::cout << (*this).toString();
+  std::cin >> option_number;
+  
+  while ( ! std::cin || option_number > size() )
+    {
+      std::cin.clear();
+      std::getline(std::cin, bad_data);
+      std::cout << (*this).toString();
+      std::cin >> option_number;
+    }
+  
+  std::getline(std::cin, bad_data);
+
+  return option_number;
 }
 
 void Menu::set_top_message(const std::string &m)
