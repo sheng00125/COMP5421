@@ -1,4 +1,3 @@
-
 #include "LineManager.hpp"
 
 
@@ -177,7 +176,9 @@ void LineManager::insert_input_from_text_file() {
 }
 
 void LineManager::print_the_current_line() {
+
   std::cout << db_store.getCurrentIndex() + 1 << ": " << db_store.getValue() << std::endl;
+
 }
 
 void LineManager::print_a_span_of_lines_around_the_current_position() {
@@ -187,11 +188,17 @@ void LineManager::print_a_span_of_lines_around_the_current_position() {
   int upperidx = currentpositionidx + upper_span;
   int loweridx = currentpositionidx + lower_span ;
   
+  if (upperidx < 0)
+    std::cout << "**BOF\n";
+
   for (int i = std::max(upperidx, 0); i < std::min(loweridx, static_cast<int>(db_store.size())); ++i) {
     db_store.moveToIndex(i);
     std::cout << db_store.getCurrentIndex() + 1 << ": " << db_store.getValue() << std::endl;
   }
-  
+
+  if (loweridx > db_store.size())
+    std::cout << "**EOF\n";
+
 }
 
 void LineManager::set_the_length_of_upper_or_lower_line_spans() {
@@ -212,11 +219,25 @@ void LineManager::set_the_length_of_upper_or_lower_line_spans() {
   
   std::getline(std::cin, bad_data);
 
-  if ( span < 0 && span < -db_store.getCurrentIndex())
-    std::cout << "That's a large span of lines. Max is " << db_store.getCurrentIndex();
-  
-  if ( span > 0 && span > (db_store.size() - db_store.getCurrentIndex() - 1) )
-    std::cout << "That's a large span of lines. Max is " << db_store.size() - db_store.getCurrentIndex() - 1 << std::endl;
+  if ( span < 0 ) {
+
+    if ( !(span < -db_store.getCurrentIndex() ) )
+      upper_span = span;
+    else
+      std::cout << "That's a large span of lines. Max is " << db_store.getCurrentIndex() << std::endl;
+    
+  }
+
+    
+  if ( span > 0 ) {
+    
+    if ( (! span > (db_store.size() - db_store.getCurrentIndex() - 1) ) )
+      lower_span = span;
+    else
+      std::cout << "That's a large span of lines. Max is " << db_store.size() - db_store.getCurrentIndex() - 1 << std::endl;
+
+  }
+
 }
 
 void LineManager::print_all() {
@@ -262,7 +283,7 @@ void LineManager::write_mini_database_to_file() {
 }
 
 void LineManager::quit() {
-  
+  // let the perform_action() return 12, which will break the while loop and hence quit.
 }
 
   
