@@ -121,6 +121,8 @@ int LineManager::perform_action(int option_number)
       break;
   
     }
+
+  std::cout << std::endl;
   
   return option_number;
 }
@@ -168,10 +170,42 @@ void LineManager::insert_input_from_the_keyboard() {
 }
 
 void LineManager::append_input_from_text_file() {
+
+  std::string line;
+  std::string filename;
+  
+  std::cout << "Enter input filename: " <<std::endl;
+  std::cin >> filename;
+  
+  std::ifstream textfile( filename );
+
+  if (textfile) {
+    while (getline (textfile, line))
+      db_store.append(line);
+    textfile.close();
+  }
+  else
+    std::cout << "could not open file." << std::endl;
   
 }
 
 void LineManager::insert_input_from_text_file() {
+  
+  std::string line;
+  std::string filename;
+  
+  std::cout << "Enter input filename: " <<std::endl;
+  std::cin >> filename;
+
+  std::ifstream textfile( filename );
+
+  if (textfile) {
+    while (getline (textfile, line))
+      db_store.insert(line);
+    textfile.close();
+  }
+  else
+    std::cout << "could not open file." << std::endl;
   
 }
 
@@ -186,7 +220,7 @@ void LineManager::print_a_span_of_lines_around_the_current_position() {
   int currentpositionidx = db_store.getCurrentIndex();
 
   int upperidx = currentpositionidx + upper_span;
-  int loweridx = currentpositionidx + lower_span ;
+  int loweridx = currentpositionidx + lower_span + 1 ;
   
   if (upperidx < 0)
     std::cout << "**BOF\n";
@@ -231,12 +265,15 @@ void LineManager::set_the_length_of_upper_or_lower_line_spans() {
     
   if ( span > 0 ) {
     
-    if ( (! span > (db_store.size() - db_store.getCurrentIndex() - 1) ) )
+    if ( !( span > db_store.size() - db_store.getCurrentIndex() - 1 ) )
       lower_span = span;
     else
       std::cout << "That's a large span of lines. Max is " << db_store.size() - db_store.getCurrentIndex() - 1 << std::endl;
 
   }
+
+  if ( span == 0 )
+    upper_span = lower_span = 0;
 
 }
 
@@ -277,13 +314,37 @@ void LineManager::move_the_current_line() {
 }
 
 void LineManager::delete_the_current_line() {
+  std::cout << "removing the current line ..." << std::endl;
+  db_store.remove();
 }
 
 void LineManager::write_mini_database_to_file() {
+  
+  std::string line;
+  std::string filename;
+  
+  std::cout << "Enter output filename: " << std::endl;
+  std::cin >> filename;
+
+  std::ofstream textfile( filename );
+
+  if (textfile) {
+    db_store.moveToFirst();
+    while (db_store.getCurrentIndex() != db_store.size())
+      try {
+	textfile << db_store.getValue() << std::endl;
+	db_store.next();
+      } catch ( std::logic_error& e) {
+	std::cout << e.what() << std::endl;
+      }
+    
+    textfile.close();
+  }
+  else
+    std::cout << "could not open file." << std::endl;
+  
 }
 
 void LineManager::quit() {
   // let the perform_action() return 12, which will break the while loop and hence quit.
 }
-
-  

@@ -7,6 +7,7 @@
 
 // used in .cpp file
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 
 class LineManager
