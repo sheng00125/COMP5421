@@ -4,8 +4,8 @@ LineManager::LineManager()
 {
 
   // setting top and bottom messages
-  full_menu.set_top_message("Welcome to LineManager!\n=======================\n\nChoose one of the following options:\n");
-  partial_menu.set_top_message("Welcome to LineManager!\n=======================\n\nChoose one of the following options:\n");
+  full_menu.set_top_message("Choose one of the following options:\n");
+  partial_menu.set_top_message("Choose one of the following options:\n");
 
   std::vector<std::string> option_list{"append input from the keyboard",
                                        "insert input from the keyboard",
@@ -47,6 +47,8 @@ LineManager::LineManager()
 
 void LineManager::run()
 {
+  std::cout << "Welcome to LineManager!\n=======================\n\n";
+
   int option_number;
 
   while (1)
