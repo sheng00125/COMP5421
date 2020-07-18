@@ -372,13 +372,6 @@ void LineManager::write_mini_database_to_file()
 
 void LineManager::quit()
 {
+  std::cout << "goodbye";
   // let the perform_action() return 12, which will break the while loop and hence quit.
-  try
-  {
-    db_store.next();
-  }
-  catch (std::logic_error &e)
-  {
-    std::cout << e.what();
-  }
 }
