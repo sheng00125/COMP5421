@@ -7,6 +7,7 @@
 
 // used in .cpp file
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <algorithm>
 
@@ -21,7 +22,7 @@ class LineManager
 
   int perform_action(int option_number);
   void readinput();
-  
+
   void append_input_from_the_keyboard();
   void insert_input_from_the_keyboard();
   void append_input_from_text_file();
@@ -34,9 +35,7 @@ class LineManager
   void delete_the_current_line();
   void write_mini_database_to_file();
   void quit();
-  
 
-  
 public:
   LineManager();
   void run();

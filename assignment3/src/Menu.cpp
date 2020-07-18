@@ -2,25 +2,23 @@
 
 Menu::Menu()
 {
-   
 }
 
-void Menu::insert(int index, std::string& option)
+void Menu::insert(int index, std::string &option)
 {
 
-  option_list.insert( option_list.begin() + index, option);
-  
+  option_list.insert(option_list.begin() + index, option);
 }
 
-void Menu::push_back(std::string&option)
+void Menu::push_back(std::string &option)
 {
-    option_list.insert( option_list.end(), option );
+  option_list.insert(option_list.end(), option);
 }
 
 void Menu::remove(int index)
 {
-  auto it { option_list.begin() + index };
-  
+  auto it{option_list.begin() + index};
+
   option_list.erase(it);
 }
 
@@ -31,12 +29,12 @@ int Menu::size() const
 
 void Menu::pop_back()
 {
-  option_list.erase( option_list.end() - 1 );
+  option_list.erase(option_list.end() - 1);
 }
 
 std::string Menu::get(int k)
 {
-  auto it { option_list.begin() + k };
+  auto it{option_list.begin() + k};
 
   return *it;
 }
@@ -52,12 +50,13 @@ std::string Menu::toString() const
     prompt += std::to_string(v.idx) + ". " + *(v.it) + "\n";    
   }
   */
-  for ( auto it = option_list.begin() ; it != option_list.end(); ++it) {
-    prompt += std::to_string(it - option_list.begin() + 1) + ". " + *it + "\n";    
+  for (auto it = option_list.begin(); it != option_list.end(); ++it)
+  {
+    prompt += std::to_string(it - option_list.begin() + 1) + ". " + *it + "\n";
   }
-  
+
   prompt += bottom_message;
-  
+
   return prompt;
 }
 
@@ -65,18 +64,18 @@ int Menu::read_option_number()
 {
   std::string bad_data;
   int option_number;
-  
+
   std::cout << (*this).toString();
   std::cin >> option_number;
-  
-  while ( ! std::cin || option_number > size() )
-    {
-      std::cin.clear();
-      std::getline(std::cin, bad_data);
-      std::cout << (*this).toString();
-      std::cin >> option_number;
-    }
-  
+
+  while (!std::cin || option_number > size())
+  {
+    std::cin.clear();
+    std::getline(std::cin, bad_data);
+    std::cout << (*this).toString();
+    std::cin >> option_number;
+  }
+
   std::getline(std::cin, bad_data);
 
   return option_number;

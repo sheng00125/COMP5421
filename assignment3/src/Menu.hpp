@@ -12,13 +12,13 @@ class Menu
   std::string bottom_message;
 
   void perform_action(int option);
-  
+
 public:
   Menu();
 
-  void insert( int index, std::string& option );
+  void insert(int index, std::string &option);
 
-  void push_back(std::string& option);
+  void push_back(std::string &option);
 
   void remove(int index);
 
@@ -31,7 +31,7 @@ public:
   std::string toString() const;
 
   int read_option_number();
-  
+
   void set_top_message(const std::string &m);
   void set_bottom_message(const std::string &m);
 
@@ -39,7 +39,6 @@ public:
   void clear_bottom_message();
 
   bool isEmpty() const;
-  
 };
 
 #endif /* MENU_H */
