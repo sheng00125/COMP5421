@@ -3,6 +3,7 @@
 #define SHAPE_H
 
 #include <string>
+#include <vector>
 
 #include <iostream>
 #include <sstream>
@@ -11,6 +12,8 @@
 #include <typeinfo>
 
 #include <cmath>
+
+#include "Grid.hpp"
 
 class Shape
 {
@@ -50,13 +53,16 @@ public:
   virtual int computeScreenPerimeter() const = 0;
 
   // 9.
-  virtual void draw() const = 0;
+  virtual Grid draw(char fChar = '*', char bChar = ' ') const = 0;
 
   // 10.
   virtual int getBoundingBoxHeight() const = 0 ;
 
   // 11.
   virtual int getBoundingBoxWidth() const = 0;
+
+  // allow '<< obj', instead of '<< obj.toString()'
+  friend std::ostream& operator<<(std::ostream&  os, const Shape& shape);
 };
 
 #endif /* SHAPE_H

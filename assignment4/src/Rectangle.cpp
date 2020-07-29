@@ -32,9 +32,22 @@ int Rectangle::computeScreenPerimeter() const
 }
 
 // 9.
-void Rectangle::draw() const
+Grid Rectangle::draw(char fChar, char bChar) const
 {
-  
+  Grid ascii_art;
+
+  for ( int i = 0; i < getBoundingBoxHeight(); ++i)
+    {
+      std::vector<char> row;
+      
+      for (int j = 0; j < getBoundingBoxWidth(); ++j)
+	{
+	  row.push_back(fChar);
+	}
+      ascii_art.push_back(row);
+    }
+
+  return ascii_art;
 }
 
 int Rectangle::getBoundingBoxHeight() const

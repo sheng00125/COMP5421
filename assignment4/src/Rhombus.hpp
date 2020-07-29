@@ -23,7 +23,7 @@ public:
   int computeScreenPerimeter() const;
 
   // 9.
-  void draw() const;
+  Grid draw(char fChar = '*', char bChar = ' ') const;
 
   // 10.
   int getBoundingBoxHeight() const;

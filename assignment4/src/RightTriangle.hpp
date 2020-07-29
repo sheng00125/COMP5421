@@ -18,7 +18,7 @@ public:
   int computeScreenPerimeter() const;
 
   // 9.
-  void draw() const;
+  Grid draw(char fChar = '*', char bChar = ' ') const;
 
 };
 

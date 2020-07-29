@@ -24,7 +24,22 @@ int RightTriangle::computeScreenPerimeter() const
 }
 
 //9.
-void RightTriangle::draw() const
+Grid RightTriangle::draw(char fChar, char bChar) const
 {
+  Grid ascii_art;
+
+  for (int i = 0; i < getBoundingBoxHeight(); ++i)
+    {
+      std::vector<char> row;
+      
+      for (int j = 0; j < getBoundingBoxWidth(); ++j) {
+	if (j <= i)
+	  row.push_back(fChar);
+	else
+	  row.push_back(bChar);
+      }
+      ascii_art.push_back(row);
+    }
   
+  return ascii_art;
 }

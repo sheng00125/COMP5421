@@ -33,9 +33,25 @@ int Rhombus::computeScreenPerimeter() const
 }
 
 // 9.
-void Rhombus::draw() const
+Grid Rhombus::draw(char fChar, char bChar) const
 {
-  
+  Grid ascii_art;
+
+  for ( int i = 0; i < getBoundingBoxHeight(); ++i)
+    {
+      std::vector<char> row;
+      
+      for (int j = 0; j < getBoundingBoxWidth(); ++j)
+	{
+	  if ( j < diagonal - abs( diagonal - 1 - i*2 ) / 2 && j >= abs( diagonal - 1 - i*2 ) / 2 )
+	    row.push_back(fChar);
+	  else
+	    row.push_back(bChar);
+	}
+      ascii_art.push_back(row);
+    }
+
+  return ascii_art;
 }
 
 int Rhombus::getBoundingBoxHeight() const

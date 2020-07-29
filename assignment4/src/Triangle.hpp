@@ -25,7 +25,7 @@ public:
   virtual int computeScreenPerimeter() const = 0;
 
   // 9.
-  virtual void draw() const = 0;
+  virtual Grid draw(char fChar = '*', char bChar = ' ') const = 0;
 
   // 10.
   int getBoundingBoxHeight() const;
