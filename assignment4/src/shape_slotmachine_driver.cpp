@@ -4,7 +4,20 @@
 #include "AcuteTriangle.hpp"
 #include "RightTriangle.hpp"
 
+#include "SlotMachine.hpp"
+
+void task1();
+void task2();
+
 int main(int argc, char *argv[])
+{
+
+  task2();
+  
+  return 0;
+}
+
+void task1()
 {
   // Some Examples
 
@@ -51,6 +64,11 @@ int main(int argc, char *argv[])
 
   aceBox = ace.draw('o');
   std::cout << aceBox << std::endl;
-  
-  return 0;
+
+}
+
+void task2() {
+  SlotMachine r;
+
+  r.run();
 }

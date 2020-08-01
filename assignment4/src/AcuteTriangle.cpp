@@ -1,8 +1,8 @@
 #include "AcuteTriangle.hpp"
 
-AcuteTriangle::AcuteTriangle(int base, std::string name, std::string description) : Triangle(base % 2 ? base : base + 1, (base + 1)/2, name, description)
+AcuteTriangle::AcuteTriangle(int base, std::string name, std::string description) : Triangle(base % 2 ? base : base + 1, base % 2 ? (base / 2) + 1 : ((base + 1) / 2) + 1, name, description)
 {
-  std::cout << "Constructing";
+  
 }
 
 // 6.

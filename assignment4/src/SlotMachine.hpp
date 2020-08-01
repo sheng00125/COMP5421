@@ -20,13 +20,13 @@ class SlotMachine
   void make_shape(int k); // Steps 7-18
   void display(); // Step 23
 public:
-  ShapeSlotMachine() = default;
+  SlotMachine() = default;
   SlotMachine(const SlotMachine&) = delete; // copy ctor
   SlotMachine(SlotMachine&&) = delete; // move ctor
-  SlotMachine& operator=(const SlotMachine&) = delete; // copy assignment
-  slotMachine& operator=(SlotMachine&&) = delete; // move assignment
-  virtual ~ShapeSlotMachine() = default;
-  void run();
+  SlotMachine& operator=(const SlotMachine & ) = delete; // copy assignment
+  SlotMachine& operator=( SlotMachine && ) = delete; // move assignment
+  virtual ~SlotMachine() = default;
+  void run(int initial_tokens = 10);
   
 };
 
